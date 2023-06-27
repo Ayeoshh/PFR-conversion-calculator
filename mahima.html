@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!-- team members:
+Mahima Mukherjee - 2021CH70447
+Shubh Mehrotra - 2021BB10323
+Kartikeye nigam - 2021CH70441
+Raavya Jain - 2021BB10333 -->
+<html>
+<head>
+  <title>PFR Percentage Conversion Calculator</title>
+  <style>
+    /* CSS styles for the calculator */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .input_grp {
+      margin-bottom: 20px;
+    }
+
+    .input_grp label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .input_grp input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .b_calculate {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+
+    /* CSS styles for hover effects */
+    .b_calculate:hover {
+      background-color: #2e8733;
+    }
+  </style>
+</head>
+<body>
+  <h1>PFR Percentage Conversion Calculator</h1>
+  <div class="container">
+    <div class="input_grp">
+      <label for="rate_constant">Rate Constant for First Order Reaction:</label>
+      <input type="number" id="rate_constant" step="0.01" min="0" required>
+    </div>
+    <div class="input_grp">
+      <label for="flow_rate">Volumetric Flow Rate (m^3/s):</label>
+      <input type="number" id="flow_rate" step="0.01" min="0" required>
+    </div>
+    <div class="input_grp">
+      <label for="reactor_vol">Volume of Reactor (m^3):</label>
+      <input type="number" id="reactor_vol" step="0.01" min="0" required>
+    </div>
+    <button class="b_calculate" onclick="calculateConversion()">Calculate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateConversion() {
+      // for the input values
+      var rateConstant = parseFloat(document.getElementById('rate_constant').value);
+      var flowRate = parseFloat(document.getElementById('flow_rate').value);
+      var reactorVolume = parseFloat(document.getElementById('reactor_vol').value);
+
+      // Calculating the percentage of conversion
+      var formula = (1 - Math.exp(-rateConstant * reactorVolume / flowRate ))*100;
+
+      // to display the result
+      var result = document.getElementById('result');
+      result.textContent = "Percentage Conversion: " + formula.toFixed(2) + "%";
+    }
+  </script>
+</body>
+</html>
